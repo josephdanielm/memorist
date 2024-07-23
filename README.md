@@ -1,9 +1,3 @@
-# React Template
+# Memorist
 
-Starter project template with:
-
-- React
-- Tailwind CSS
-- ESLint
-- Prettier
-- Vite
+Memory-game app utilizing the Art Institute of Chicago's API.
