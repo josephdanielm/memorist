@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Sentient-Variable';
+  src: url('./fonts/Sentient-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
 :root {
-  font-family: Avenir, system-ui, Helvetica, Arial, sans-serif;
+  font-family: 'Sentient-Variable', system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.2;
   font-weight: 400;
 
