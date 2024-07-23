@@ -12,11 +12,11 @@
 
 :root {
   font-family: 'Sentient-Variable', system-ui, Helvetica, Arial, sans-serif;
-  line-height: 1.2;
+  line-height: 1.4;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1a1a1a;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -61,8 +61,4 @@ body,
   height: 100dvh;
   width: 100dvw;
   overflow: hidden;
-}
-
-#root {
-  display: flex;
 }
