@@ -7,10 +7,14 @@ export default function useArtWorkData() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let ignore = false;
+
     async function startFetching() {
       try {
         const data = await getProcessedArtworkData();
-        setArtworkData(data);
+        if (!ignore) {
+          setArtworkData(data);
+        }
       } catch (e) {
         setError(e);
       } finally {
@@ -19,6 +23,10 @@ export default function useArtWorkData() {
     }
 
     startFetching();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return { artworkData, loading, error };
