@@ -1,6 +1,7 @@
-import React from 'react';
-import './App.css';
-import githubLogo from './assets/github-mark.svg';
+import React from "react";
+import "./App.css";
+import githubLogo from "./assets/github-mark.svg";
+import Gameboard from "./components/Gameboard.jsx";
 
 function App() {
   return (
@@ -29,7 +30,10 @@ function Main() {
         <p>Click an artwork to gain a point.</p>
         <p>Don&apos;t click the same artwork twice.</p>
       </article>
-      <section>Main Content</section>
+      <section>
+        {/* TODO: add scoreboard component */}
+        <Gameboard />
+      </section>
     </main>
   );
 }
