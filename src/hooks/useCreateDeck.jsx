@@ -14,6 +14,8 @@ export default function useCreateDeck() {
         const data = await getProcessedArtworkData();
         if (!ignore) {
           setDeck(data);
+          console.log(`setting data: ${data}`);
+          console.log(`setting deck: ${deck}`);
         }
       } catch (e) {
         setError(e);
