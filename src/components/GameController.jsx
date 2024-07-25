@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import useCreateDeck from "../hooks/useCreateDeck";
 import CardGrid from "./CardGrid";
+import Scoreboard from "./Scoreboard";
 
 export default function GameController() {
   const { deck, loading, error } = useCreateDeck();
   const [unclickedCards, setUnclickedCards] = useState([]);
   const [activeCards, setActiveCards] = useState([]);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     if (!loading && deck.length > 0) {
@@ -16,24 +18,10 @@ export default function GameController() {
 
   useEffect(() => {
     if (unclickedCards.length === 0 && deck.length > 0 && !loading) {
-      alert("You win!");
+      setTimeout(() => alert("You win!"), 15);
       // Trigger win logic
     }
   }, [unclickedCards]);
-
-  // useEffect(() => {
-  //   if (!loading && deck.length > 0) {
-  //     setUnclickedCards(deck);
-  //     setActiveCards(drawCards(6, deck, deck));
-  //   }
-  // }, [loading, deck]);
-
-  // useEffect(() => {
-  //   if (unclickedCards.length === 0 && deck.length > 0) {
-  //     alert("You win!");
-  //     // Trigger win logic
-  //   }
-  // }, [unclickedCards, deck]);
 
   function handleCardClick(e) {
     const clickedCardId = parseInt(e.currentTarget.id, 10);
@@ -42,6 +30,7 @@ export default function GameController() {
     );
 
     if (!cardHasBeenClicked) {
+      setScore((prev) => prev + 1);
       const newUnclickedCardsArray = unclickedCards.filter(
         (card) => card.id !== clickedCardId,
       );
@@ -57,6 +46,7 @@ export default function GameController() {
 
   return (
     <>
+      <Scoreboard score={score} />
       <CardGrid
         activeCards={activeCards}
         handleCardClick={handleCardClick}
