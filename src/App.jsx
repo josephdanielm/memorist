@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import githubLogo from "./assets/github-mark.svg";
-import Gameboard from "./components/Gameboard.jsx";
+import GameController from "./components/GameController.jsx";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function Main() {
       </article>
       <section>
         {/* TODO: add scoreboard component */}
-        <Gameboard />
+        <GameController />
       </section>
     </main>
   );

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import getProcessedArtworkData from "../api/artworkDataHandler";
 
-export default function useArtWorkData() {
-  const [artworkData, setArtworkData] = useState([]);
+export default function useCreateDeck() {
+  const [deck, setDeck] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ export default function useArtWorkData() {
       try {
         const data = await getProcessedArtworkData();
         if (!ignore) {
-          setArtworkData(data);
+          setDeck(data);
         }
       } catch (e) {
         setError(e);
@@ -29,5 +29,5 @@ export default function useArtWorkData() {
     };
   }, []);
 
-  return { artworkData, loading, error };
+  return { deck, loading, error };
 }
