@@ -14,9 +14,18 @@ export default function GameController() {
     }
   }, [loading, deck]);
 
+  function handleCardClick(e) {
+    console.log(e.currentTarget);
+  }
+
   return (
     <>
-      <CardGrid activeCards={activeCards} loading={loading} error={error} />
+      <CardGrid
+        activeCards={activeCards}
+        handleCardClick={handleCardClick}
+        loading={loading}
+        error={error}
+      />
     </>
   );
 }

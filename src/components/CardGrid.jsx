@@ -1,6 +1,11 @@
 import Card from "./Card";
 
-export default function CardGrid({ activeCards, loading, error }) {
+export default function CardGrid({
+  activeCards,
+  handleCardClick,
+  loading,
+  error,
+}) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -12,6 +17,7 @@ export default function CardGrid({ activeCards, loading, error }) {
           id={item.id}
           title={item.title}
           image_url={item.image_url}
+          handleCardClick={handleCardClick}
         />
       ))}
     </div>
