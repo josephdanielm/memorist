@@ -1,5 +1,9 @@
 export default async function fetchArtworkData() {
-  let response = await fetch(getArtworkUrl());
+  let response = await fetch(getArtworkUrl(), {
+    headers: {
+      "AIC-User-Agent": "memorist (josephdanielmudd@gmail.com)",
+    },
+  });
   let data = await response.json();
   return data;
 }
