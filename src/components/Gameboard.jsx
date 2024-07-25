@@ -1,5 +1,5 @@
 import useArtworkData from "../hooks/useArtworkData";
-import ArtworkCard from "./ArtworkCard";
+import Card from "./Card";
 
 export default function Gameboard() {
   const { artworkData, loading, error } = useArtworkData();
@@ -9,9 +9,9 @@ export default function Gameboard() {
 
   return (
     <>
-      <div className="grid grid-cols-4 ">
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
         {artworkData.map((item) => (
-          <ArtworkCard
+          <Card
             key={item.id}
             id={item.id}
             title={item.title}
