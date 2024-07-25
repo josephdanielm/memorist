@@ -14,8 +14,45 @@ export default function GameController() {
     }
   }, [loading, deck]);
 
+  useEffect(() => {
+    if (unclickedCards.length === 0 && deck.length > 0 && !loading) {
+      alert("You win!");
+      // Trigger win logic
+    }
+  }, [unclickedCards]);
+
+  // useEffect(() => {
+  //   if (!loading && deck.length > 0) {
+  //     setUnclickedCards(deck);
+  //     setActiveCards(drawCards(6, deck, deck));
+  //   }
+  // }, [loading, deck]);
+
+  // useEffect(() => {
+  //   if (unclickedCards.length === 0 && deck.length > 0) {
+  //     alert("You win!");
+  //     // Trigger win logic
+  //   }
+  // }, [unclickedCards, deck]);
+
   function handleCardClick(e) {
-    console.log(e.currentTarget);
+    const clickedCardId = parseInt(e.currentTarget.id, 10);
+    const cardHasBeenClicked = !unclickedCards.some(
+      (card) => card.id === clickedCardId,
+    );
+
+    if (!cardHasBeenClicked) {
+      const newUnclickedCardsArray = unclickedCards.filter(
+        (card) => card.id !== clickedCardId,
+      );
+      setUnclickedCards(newUnclickedCardsArray);
+      if (newUnclickedCardsArray.length) {
+        setActiveCards(drawCards(6, deck, newUnclickedCardsArray));
+      }
+    } else {
+      // show 'you lose' modal, reset score
+      alert("You lose!");
+    }
   }
 
   return (
