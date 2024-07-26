@@ -1,27 +1,62 @@
 import { useState, useEffect } from "react";
+import { drawCards, getShuffledCards } from "../utils/deckUtils";
 import useCreateDeck from "../hooks/useCreateDeck";
 import CardGrid from "./CardGrid";
 import Scoreboard from "./Scoreboard";
 
 export default function GameController() {
-  const { deck, loading, error } = useCreateDeck();
+  const [resetGameTrigger, setResetGameTrigger] = useState(false);
+  const { deck, loading, error } = useCreateDeck(resetGameTrigger);
   const [unclickedCards, setUnclickedCards] = useState([]);
   const [activeCards, setActiveCards] = useState([]);
   const [score, setScore] = useState(0);
+  const [gameState, setGameState] = useState("initializing");
 
   useEffect(() => {
     if (!loading && deck.length > 0) {
       setUnclickedCards(deck);
       setActiveCards(drawCards(6, deck, deck));
+      setGameState("playing");
     }
   }, [loading, deck]);
 
   useEffect(() => {
-    if (unclickedCards.length === 0 && deck.length > 0 && !loading) {
-      setTimeout(() => alert("You win!"), 15);
-      // Trigger win logic
+    if (gameState === "won") {
+      alert("You win!");
+      resetGame();
+    } else if (gameState === "lost") {
+      alert("You lose!");
+      resetGame();
     }
-  }, [unclickedCards]);
+  }, [gameState]);
+
+  useEffect(() => {
+    if (
+      gameState === "playing" &&
+      unclickedCards.length === 0 &&
+      deck.length > 0
+    ) {
+      handleWin();
+    }
+  }, [unclickedCards, deck, gameState]);
+
+  function handleWin() {
+    setGameState("won");
+  }
+
+  function handleLose() {
+    setGameState("lost");
+  }
+
+  function resetGame() {
+    setTimeout(() => {
+      setScore(0);
+      setUnclickedCards([]);
+      setActiveCards([]);
+      setGameState("initializing");
+      setResetGameTrigger((prev) => !prev);
+    }, 15);
+  }
 
   function handleCardClick(e) {
     const clickedCardId = parseInt(e.currentTarget.id, 10);
@@ -39,8 +74,7 @@ export default function GameController() {
         setActiveCards(drawCards(6, deck, newUnclickedCardsArray));
       }
     } else {
-      // show 'you lose' modal, reset score
-      alert("You lose!");
+      handleLose();
     }
   }
 
@@ -55,44 +89,4 @@ export default function GameController() {
       />
     </>
   );
-}
-
-function drawCards(amountToDraw, entireDeck, unclickedCardsArray) {
-  if (!amountToDraw) {
-    throw new Error("Cannot draw 0 cards.");
-  }
-
-  console.log(unclickedCardsArray);
-
-  const obligatoryUnclickedCard = getShuffledCards(1, unclickedCardsArray)[0];
-  console.log(obligatoryUnclickedCard);
-  const tempDeck = entireDeck.filter(
-    (card) => card.id !== obligatoryUnclickedCard.id,
-  );
-  return [
-    obligatoryUnclickedCard,
-    ...getShuffledCards(amountToDraw - 1, tempDeck),
-  ];
-}
-
-function getShuffledCards(amount, cardArray) {
-  if (cardArray.length === 0) {
-    throw new Error("No cards in cardArray.");
-  }
-  if (cardArray.length === 1) {
-    return cardArray;
-  }
-
-  const randomIndices = getRandomIntsExclusive(amount, cardArray.length);
-  const shuffledCards = randomIndices.map((index) => cardArray[index]);
-
-  return shuffledCards;
-}
-
-function getRandomIntsExclusive(quantity, max) {
-  const set = new Set();
-  while (set.size < quantity) {
-    set.add(Math.floor(Math.random() * max));
-  }
-  return Array.from(set);
 }

@@ -14,6 +14,5 @@ export default async function getProcessedArtworkData() {
     };
   });
 
-  console.log(processedData); // remove log
   return processedData;
 }
