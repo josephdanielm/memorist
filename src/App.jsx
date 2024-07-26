@@ -16,10 +16,19 @@ function App() {
 function Header() {
   return (
     <header>
-      <nav className="py-2">
-        <h1 className="font-normal text-2xl sm:text-3xl xl:text-4xl w-fit mx-auto text-center bg-gradient-to-r from-zinc-50 via-zinc-200 to-zinc-500 text-transparent bg-clip-text">
+      <nav className="py-2 sm:py-4 xl:py-6">
+        <h1 className="font-normal text-3xl sm:text-4xl xl:text-5xl w-fit mx-auto text-center bg-gradient-to-r from-zinc-50 via-zinc-200 to-zinc-500 text-transparent bg-clip-text">
           Memorist
         </h1>
+        <div className="mx-auto text-sm font-normal text-center py-2">
+          Thank you to the{" "}
+          <u>
+            <a href="https://www.artic.edu/" target="_blank">
+              Art Institute of Chicago
+            </a>
+          </u>
+          .
+        </div>
       </nav>
     </header>
   );
@@ -45,7 +54,9 @@ function Footer() {
   return (
     <footer className="bg-zinc-200 fixed bottom-0 left-0 right-0">
       <div className="mx-auto w-fit py-2">
-        <img src={githubLogo} alt="Github Icon" className="w-8" />
+        <a href="https://github.com/josephdanielm/memorist" target="_blank">
+          <img src={githubLogo} alt="Github Icon" className="w-8" />
+        </a>
       </div>
     </footer>
   );

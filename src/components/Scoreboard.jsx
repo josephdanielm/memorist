@@ -11,9 +11,13 @@ export default function Scoreboard({ score }) {
 
   return (
     <>
-      <div className="flex mx-auto gap-x-3 text-center py-1 px-3 rounded-md bg-zinc-300 text-zinc-800 mt-4 mb-2">
-        <p>Score: {score}</p>
-        <p>High Score: {bestScore}</p>
+      <div className="flex mx-auto gap-x-3 font-normal text-center py-1 px-3 bg-zinc-300 text-zinc-800 mt-6">
+        <p>
+          Score: <b>{score}</b>
+        </p>
+        <p>
+          High Score: <b>{bestScore}</b>
+        </p>
       </div>
     </>
   );
