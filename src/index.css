@@ -16,8 +16,8 @@
   line-height: 1.4;
   font-weight: 400;
 
-  background-color: hsl(0, 0, 98, 1);
-  color: hsl(0, 0, 10, 1);
+  background-color: #1a1a1a;
+  color: rgb(228 228 231);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

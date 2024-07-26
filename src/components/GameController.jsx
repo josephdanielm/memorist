@@ -77,7 +77,7 @@ export default function GameController() {
       handleLose();
     }
   }
-  // grid grid-cols-2 lg:grid-cols-1 lg:grid-rows-2 gap-4
+
   return (
     <>
       <Scoreboard score={score} />

@@ -6,10 +6,10 @@ export default function CardGrid({
   loading,
   error,
 }) {
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (loading) return <div className="mx-auto flex pt-10">Loading...</div>;
+  if (error)
+    return <div className="mx-auto flex pt-10">Error: {error.message}</div>;
 
-  // inline-flex flex-wrap items-start justify-evenly gap-x-6 grow overflow-y-scroll pt-8 pb-12
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4 items-start">
       {activeCards.map((item) => (
