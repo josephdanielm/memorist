@@ -11,7 +11,7 @@ export default function Scoreboard({ score }) {
 
   return (
     <>
-      <div>
+      <div className="flex mx-auto gap-x-3 text-center py-2">
         <p>Score: {score}</p>
         <p>High Score: {bestScore}</p>
       </div>

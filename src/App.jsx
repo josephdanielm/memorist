@@ -25,13 +25,12 @@ function Header() {
 
 function Main() {
   return (
-    <main className="p-4 flex flex-col gap-y-4">
+    <main className="px-4 flex flex-col grow max-w-4xl mx-auto">
       <article className="mx-auto text-center">
         <p>Click an artwork to gain a point.</p>
         <p>Don&apos;t click the same artwork twice.</p>
       </article>
-      <section>
-        {/* TODO: add scoreboard component */}
+      <section className="flex flex-col grow">
         <GameController />
       </section>
     </main>
@@ -40,7 +39,7 @@ function Main() {
 
 function Footer() {
   return (
-    <footer>
+    <footer className="bg-neutral-300 fixed bottom-0 left-0 right-0">
       <div className="mx-auto w-fit py-2">
         <img src={githubLogo} alt="Github Icon" className="w-8" />
       </div>

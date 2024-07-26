@@ -77,16 +77,18 @@ export default function GameController() {
       handleLose();
     }
   }
-
+  // grid grid-cols-2 lg:grid-cols-1 lg:grid-rows-2 gap-4
   return (
     <>
       <Scoreboard score={score} />
-      <CardGrid
-        activeCards={activeCards}
-        handleCardClick={handleCardClick}
-        loading={loading}
-        error={error}
-      />
+      <div className="flex flex-wrap gap-4 mx-4 sm:mx-20 md:mx-26 pb-16">
+        <CardGrid
+          activeCards={activeCards}
+          handleCardClick={handleCardClick}
+          loading={loading}
+          error={error}
+        />
+      </div>
     </>
   );
 }
